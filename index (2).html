@@ -1,0 +1,141 @@
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    </head>
+    <body onload="setTime()"> 
+
+            <p id="hours"></p><p>:</p><p id="minutes"></p><p>:</p><p id="seconds"></p>
+
+            <div id="polar">
+                <svg width="200" height="200"> 
+                <circle id="outer" cx="100" cy="100" r="90" transform="rotate(-90, 100, 100)"/>
+                </svg>
+
+                <svg width="300" height="300"> 
+                        <circle id="outer2" cx="150" cy="150" r="120" transform="rotate(-90, 150, 150)"/>
+                </svg>
+
+                <svg width="400" height="400"> 
+                        <circle id="outer3" cx="200" cy="200" r="150" transform="rotate(-90, 200, 200)"/>
+                </svg>
+            </div>
+    </body>
+
+    <style>
+        body{
+            text-align: center;
+        }
+        p{
+            display: inline;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 3em;
+        }
+        #hours{
+            color: #34495e;
+        }
+        #minutes{
+            color: #e74c3c;
+        }
+        #seconds{
+            color: #3498db;
+        }
+        svg{
+            display: block;
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+        }
+        #polar{
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+        }
+        #outer {
+            fill: transparent;
+            stroke: #3498db;
+            stroke-width: 20;
+            stroke-dasharray: 565.48667764;
+            -webkit-animation: max 60s linear forwards infinite;
+        }
+        @-webkit-keyframes max {
+            from {
+                stroke-dashoffset: 565.48667764;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        #outer2 {
+            fill: transparent;
+            stroke: #e74c3c;
+            stroke-width: 20;
+            stroke-dasharray: 753.98223686;
+            -webkit-animation: max2 3600s linear forwards infinite;
+        }
+        @-webkit-keyframes max2 {
+            from {
+                stroke-dashoffset: 753.98223686;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        #outer3 {
+            fill: transparent;
+            stroke: #34495e;
+            stroke-width: 20;
+            stroke-dasharray: 942.477796076;
+            -webkit-animation: max3 86400s linear forwards infinite;
+        }
+        @-webkit-keyframes max3 {
+            from {
+                stroke-dashoffset: 942.477796076;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+
+    <script>
+        function setTime() {
+            setInterval(function(){ showTimeP(); }, 500);
+            var d = new Date();
+            var sec = d.getSeconds();
+            var min = d.getMinutes()*60+sec;
+            var hours = d.getHours()*60*60+min;
+            document.getElementById("outer").style.animationDelay = -sec+"s";
+            document.getElementById("outer2").style.animationDelay = -min+"s";
+            document.getElementById("outer3").style.animationDelay = -hours+"s";
+        }
+
+        function showTimeP() {
+            var d = new Date();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById("hours").innerHTML = h;
+            document.getElementById("minutes").innerHTML = m;
+            document.getElementById("seconds").innerHTML = s;
+        }
+
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};
+            return i;
+        }
+    </script>
+</html>
