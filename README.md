@@ -6,4 +6,4 @@ This is a PolarClock only based on html, css and js.
 # Features
 leightweight, smooth animations, vanilla js
 
-Check it out at: deinesv.cf/silvesterx
+Check it out at: http://deinesv.cf/silvesterx
